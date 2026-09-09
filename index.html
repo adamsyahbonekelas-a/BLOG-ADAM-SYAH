@@ -280,7 +280,7 @@
         <span class="pill">Perkuliahan</span>
       </div>
       <div class="cta-row">
-        <a href="#materi" class="btn btn-primary">Lihat Materi</a>
+        <a href="#materi" class="btn btn-primary">Lihat Mata Kuliah</a>
         <a href="#tentang" class="btn btn-ghost">Kenalan Dulu</a>
       </div>
     </section>
@@ -423,23 +423,15 @@
   */
   const posts = [
     {
-      title: "Materi 1: Pengenalan Digital Marketing",
+      title: "Digital Marketing",
       excerpt: "Ganti dengan ringkasan materi pertama Anda di mata kuliah ini.",
       course: "Digital Marketing",
       type: "materi",
       date: "1 Sep 2026"
-    },
-    {
-      title: "Tugas 1: Analisis Studi Kasus",
-      excerpt: "Ganti dengan deskripsi singkat tugas ini, termasuk tenggat waktu jika perlu.",
-      course: "Digital Marketing",
-      type: "tugas",
-      date: "5 Sep 2026"
     }
   ];
   const typeMeta = {
-    materi: { label: "Materi", color: "#6E8F72" },
-    tugas:  { label: "Tugas",  color: "#E0993A" }
+    materi: { label: "Materi", color: "#6E8F72" }
   };
   posts.forEach(p=>{ p.tagLabel = typeMeta[p.type].label + " · " + p.course; p.color = typeMeta[p.type].color; });
 
