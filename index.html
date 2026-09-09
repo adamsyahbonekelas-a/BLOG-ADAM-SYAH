@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nama Anda — Dossier Pribadi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1B2A4A;
+    --ink-soft:#2C3E63;
+    --parchment:#F8F5EE;
+    --amber:#E0993A;
+    --sage:#6E8F72;
+    --charcoal:#2B2B2A;
+    --line:#E1DACB;
+    --white:#FFFFFF;
+    --sidebar-w:300px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:'Inter',sans-serif;
+    color:var(--charcoal);
+    background:var(--parchment);
+    line-height:1.6;
+  }
+  h1,h2,h3,.serif{font-family:'Fraunces',serif;}
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+  button{font-family:inherit;cursor:pointer;}
+
+  /* ---------- LAYOUT ---------- */
+  .app{display:flex;min-height:100vh;}
+
+  /* ---------- SIDEBAR ---------- */
+  .sidebar{
+    width:var(--sidebar-w);
+    flex-shrink:0;
+    background:var(--ink);
+    color:#EFE9DC;
+    position:fixed;
+    top:0;left:0;bottom:0;
+    padding:32px 26px;
+    overflow-y:auto;
+    display:flex;
+    flex-direction:column;
+    gap:28px;
+  }
+  .profile{display:flex;flex-direction:column;align-items:center;text-align:center;gap:10px;padding-top:8px;}
+  .avatar{
+    width:96px;height:96px;border-radius:50%;
+    background:linear-gradient(135deg,var(--amber),var(--sage));
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Fraunces',serif;font-size:32px;font-weight:600;color:var(--ink);
+    border:3px solid rgba(255,255,255,0.15);
+  }
+  .profile h1{font-size:22px;margin:6px 0 0;font-weight:600;color:#fff;}
+  .profile p.role{margin:0;font-size:13.5px;color:#C9C2AF;}
+
+  .search-box{position:relative;}
+  .search-box input{
+    width:100%;padding:10px 38px 10px 14px;border-radius:8px;border:1px solid rgba(255,255,255,0.18);
+    background:rgba(255,255,255,0.06);color:#fff;font-size:14px;outline:none;
+  }
+  .search-box input::placeholder{color:#9AA3B8;}
+  .search-box input:focus{border-color:var(--amber);}
+  .search-box svg{position:absolute;right:11px;top:50%;transform:translateY(-50%);width:16px;height:16px;stroke:#C9C2AF;}
+  .search-hint{font-size:11.5px;color:#8B8F9E;margin-top:6px;}
+
+  nav.side-nav{display:flex;flex-direction:column;gap:2px;}
+  nav.side-nav a{
+    padding:9px 12px;border-radius:7px;font-size:14.5px;color:#D9D3C2;
+    display:flex;align-items:center;gap:10px;border-left:2px solid transparent;
+    transition:background .15s ease, color .15s ease;
+  }
+  nav.side-nav a:hover{background:rgba(255,255,255,0.06);color:#fff;}
+  nav.side-nav a.active{color:#fff;background:rgba(224,153,58,0.14);border-left-color:var(--amber);}
+  nav.side-nav a .dot{width:5px;height:5px;border-radius:50%;background:currentColor;opacity:.55;}
+
+  .sidebar-footer{margin-top:auto;display:flex;flex-direction:column;gap:14px;}
+  .social-row{display:flex;gap:10px;}
+  .social-row a{
+    width:34px;height:34px;border-radius:8px;background:rgba(255,255,255,0.06);
+    display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,0.1);
+  }
+  .social-row a:hover{background:rgba(255,255,255,0.13);}
+  .social-row svg{width:16px;height:16px;stroke:#EFE9DC;fill:none;}
+  .sidebar-note{font-size:11.5px;color:#8B8F9E;}
+
+  .mobile-topbar{display:none;}
+
+  /* ---------- MAIN ---------- */
+  main{margin-left:var(--sidebar-w);flex:1;min-width:0;}
+  section{padding:96px 64px;max-width:900px;}
+  section#beranda{padding-top:88px;}
+  section + section{border-top:1px solid var(--line);}
+
+  .eyebrow-free-heading{font-size:38px;font-weight:600;margin:0 0 18px;color:var(--ink);line-height:1.15;max-width:14ch;}
+  .lede{font-size:17.5px;color:#4A4A47;max-width:58ch;margin:0 0 8px;}
+
+  .hero .tag-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:26px;}
+  .pill{
+    font-size:13px;padding:6px 13px;border-radius:20px;border:1px solid var(--line);
+    background:var(--white);color:#5C5C57;
+  }
+  .cta-row{margin-top:32px;display:flex;gap:14px;flex-wrap:wrap;}
+  .btn{
+    padding:12px 22px;border-radius:8px;font-size:14.5px;font-weight:600;border:1px solid transparent;
+  }
+  .btn-primary{background:var(--ink);color:#fff;}
+  .btn-primary:hover{background:var(--ink-soft);}
+  .btn-ghost{background:transparent;color:var(--ink);border-color:var(--line);}
+  .btn-ghost:hover{border-color:var(--ink);}
+
+  h2.section-title{font-size:30px;font-weight:600;color:var(--ink);margin:0 0 10px;}
+  p.section-desc{color:#5C5C57;max-width:60ch;margin:0 0 40px;font-size:15.5px;}
+
+  /* About */
+  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start;}
+  .about-grid p{color:#3A3A37;font-size:15.5px;}
+  .fact-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:14px;}
+  .fact-list li{display:flex;gap:12px;font-size:14.5px;border-bottom:1px dashed var(--line);padding-bottom:12px;}
+  .fact-list .k{color:#8B8F7E;min-width:120px;font-weight:500;}
+  .fact-list .v{color:var(--charcoal);}
+
+  /* Timeline */
+  .timeline{border-left:2px solid var(--line);margin-left:6px;padding-left:30px;display:flex;flex-direction:column;gap:34px;}
+  .timeline-item{position:relative;}
+  .timeline-item::before{
+    content:"";position:absolute;left:-36.5px;top:4px;width:11px;height:11px;border-radius:50%;
+    background:var(--amber);border:3px solid var(--parchment);outline:2px solid var(--amber);
+  }
+  .timeline-item .years{font-size:13px;color:var(--sage);font-weight:600;margin-bottom:4px;}
+  .timeline-item h3{font-size:18px;margin:0 0 4px;color:var(--ink);}
+  .timeline-item p{margin:0;color:#5C5C57;font-size:14.5px;}
+
+  /* Materi */
+  .filter-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:30px;}
+  .chip{
+    padding:7px 15px;border-radius:20px;font-size:13.5px;border:1px solid var(--line);background:var(--white);color:#5C5C57;
+  }
+  .chip.active{background:var(--ink);color:#fff;border-color:var(--ink);}
+  .result-count{font-size:13px;color:#8B8F7E;margin-bottom:18px;}
+  .post-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;}
+  .post-card{
+    border:1px solid var(--line);border-radius:10px;background:var(--white);padding:22px;
+    display:flex;flex-direction:column;gap:10px;position:relative;overflow:hidden;
+  }
+  .post-card::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--tagcolor,var(--sage));}
+  .post-card .tag{font-size:12px;color:var(--tagcolor,var(--sage));font-weight:600;}
+  .post-card h3{font-size:17px;margin:0;color:var(--ink);line-height:1.35;}
+  .post-card p{margin:0;font-size:14px;color:#5C5C57;}
+  .post-card .meta{font-size:12.5px;color:#9A9A92;margin-top:auto;padding-top:8px;}
+  .post-card.hidden{display:none;}
+  .empty-state{border:1px dashed var(--line);border-radius:10px;padding:40px;text-align:center;color:#8B8F7E;font-size:14.5px;}
+
+  /* Galeri */
+  .gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+  .gallery-item{
+    border-radius:10px;overflow:hidden;position:relative;aspect-ratio:1/1;cursor:pointer;
+    border:1px solid var(--line);
+  }
+  .gallery-item .thumb{width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:13px;font-weight:600;text-align:center;padding:10px;}
+  .gallery-item.video .thumb::after{
+    content:"";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+    width:0;height:0;border-style:solid;border-width:9px 0 9px 14px;border-color:transparent transparent transparent #fff;
+  }
+  .gallery-item .caption{
+    position:absolute;bottom:0;left:0;right:0;padding:10px;font-size:12px;color:#fff;
+    background:linear-gradient(to top, rgba(0,0,0,0.55), transparent);
+  }
+
+  /* Kontak / footer */
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;}
+  .contact-info p{color:#5C5C57;font-size:15px;}
+  .contact-info a.email{color:var(--ink);font-weight:600;border-bottom:1px solid var(--amber);}
+  form.contact-form{display:flex;flex-direction:column;gap:12px;}
+  form.contact-form input, form.contact-form textarea{
+    padding:11px 13px;border:1px solid var(--line);border-radius:8px;font-family:inherit;font-size:14px;background:var(--white);
+  }
+  form.contact-form textarea{min-height:100px;resize:vertical;}
+
+  footer.site-footer{padding:40px 64px 60px;color:#9A9A92;font-size:13px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;}
+
+  /* Lightbox */
+  .lightbox{
+    position:fixed;inset:0;background:rgba(20,25,35,0.88);display:flex;align-items:center;justify-content:center;
+    z-index:100;padding:40px;
+  }
+  .lightbox.hidden{display:none;}
+  .lightbox-inner{background:var(--ink);border-radius:12px;max-width:560px;width:100%;padding:32px;color:#EFE9DC;text-align:center;}
+  .lightbox-close{margin-top:20px;background:transparent;border:1px solid rgba(255,255,255,0.25);color:#EFE9DC;padding:9px 18px;border-radius:8px;font-size:13.5px;}
+
+  mark{background:rgba(224,153,58,0.35);color:inherit;border-radius:3px;padding:0 2px;}
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width:880px){
+    .about-grid,.contact-grid{grid-template-columns:1fr;}
+    .post-grid{grid-template-columns:1fr;}
+    .gallery-grid{grid-template-columns:repeat(2,1fr);}
+  }
+  @media (max-width:760px){
+    .sidebar{
+      position:fixed;transform:translateX(-100%);transition:transform .25s ease;z-index:60;
+      box-shadow:0 0 40px rgba(0,0,0,0.3);
+    }
+    .sidebar.open{transform:translateX(0);}
+    main{margin-left:0;}
+    .mobile-topbar{
+      display:flex;align-items:center;justify-content:space-between;
+      position:sticky;top:0;background:var(--ink);color:#fff;padding:14px 20px;z-index:50;
+    }
+    .mobile-topbar .brand{font-family:'Fraunces',serif;font-size:17px;}
+    .mobile-topbar button{background:transparent;border:none;color:#fff;}
+    section{padding:56px 24px;}
+    footer.site-footer{padding:32px 24px 48px;flex-direction:column;}
+    .eyebrow-free-heading{font-size:30px;}
+    .gallery-grid{grid-template-columns:repeat(2,1fr);}
+  }
+</style>
+</head>
+<body>
+
+<div class="mobile-topbar">
+  <span class="brand">Nama Anda</span>
+  <button id="menuToggle" aria-label="Buka menu">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+  </button>
+</div>
+
+<div class="app">
+  <aside class="sidebar" id="sidebar">
+    <div class="profile">
+      <div class="avatar">NA</div>
+      <h1>Nama Anda</h1>
+      <p class="role">Peran / Profesi Anda</p>
+    </div>
+
+    <div>
+      <div class="search-box">
+        <input type="text" id="searchInput" placeholder="Cari materi...">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      </div>
+      <p class="search-hint">Mencari di bagian Materi &amp; Artikel</p>
+    </div>
+
+    <nav class="side-nav" id="sideNav">
+      <a href="#beranda" data-section="beranda" class="active"><span class="dot"></span>Beranda</a>
+      <a href="#tentang" data-section="tentang"><span class="dot"></span>Tentang Saya</a>
+      <a href="#pendidikan" data-section="pendidikan"><span class="dot"></span>Riwayat Pendidikan</a>
+      <a href="#materi" data-section="materi"><span class="dot"></span>Materi &amp; Artikel</a>
+      <a href="#galeri" data-section="galeri"><span class="dot"></span>Galeri</a>
+      <a href="#kontak" data-section="kontak"><span class="dot"></span>Kontak</a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="social-row">
+        <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5" stroke-width="2"/><circle cx="12" cy="12" r="4" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1" fill="#EFE9DC"/></svg></a>
+        <a href="#" aria-label="GitHub"><svg viewBox="0 0 24 24"><path stroke-width="2" d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.6 2.8 5.5 3.1 5.5 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4.1 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></a>
+        <a href="#" aria-label="Email"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2" stroke-width="2"/><path stroke-width="2" d="m4 7 8 6 8-6"/></svg></a>
+      </div>
+      <p class="sidebar-note">© <span id="year"></span> Nama Anda</p>
+    </div>
+  </aside>
+
+  <main>
+    <section id="beranda" class="hero">
+      <h1 class="eyebrow-free-heading">Catatan dan karya, dikumpulkan di satu tempat</h1>
+      <p class="lede">Ini adalah ruang pribadi saya untuk mendokumentasikan proses belajar, membagikan materi, dan menyimpan hasil desain maupun hobi — supaya semuanya bisa dilihat kembali, dan mungkin berguna untuk orang lain juga.</p>
+      <div class="tag-row">
+        <span class="pill">Belajar &amp; berbagi</span>
+        <span class="pill">Desain &amp; hobi</span>
+        <span class="pill">Dokumentasi pribadi</span>
+      </div>
+      <div class="cta-row">
+        <a href="#materi" class="btn btn-primary">Lihat Materi</a>
+        <a href="#tentang" class="btn btn-ghost">Kenalan Dulu</a>
+      </div>
+    </section>
+
+    <section id="tentang">
+      <h2 class="section-title">Tentang Saya</h2>
+      <p class="section-desc">Sedikit cerita tentang siapa saya dan apa yang sedang saya kerjakan.</p>
+      <div class="about-grid">
+        <div>
+          <p>Halo, saya <strong>Nama Anda</strong>. Ganti paragraf ini dengan cerita singkat tentang diri Anda — dari mana Anda berasal, apa yang sedang dipelajari atau dikerjakan sekarang, dan apa yang membuat Anda tertarik membuat blog ini.</p>
+          <p>Tulis juga hal-hal yang membuat Anda berbeda: pendekatan kerja, minat di luar bidang utama, atau nilai yang Anda pegang. Dua sampai tiga paragraf singkat biasanya sudah cukup — jangan terlalu panjang.</p>
+        </div>
+        <ul class="fact-list">
+          <li><span class="k">Domisili</span><span class="v">Kota Anda, Indonesia</span></li>
+          <li><span class="k">Fokus saat ini</span><span class="v">Isi dengan bidang/topik yang sedang ditekuni</span></li>
+          <li><span class="k">Hobi</span><span class="v">Isi dengan hobi Anda, mis. fotografi, desain</span></li>
+          <li><span class="k">Bahasa</span><span class="v">Indonesia, Inggris</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="pendidikan">
+      <h2 class="section-title">Riwayat Pendidikan</h2>
+      <p class="section-desc">Perjalanan pendidikan saya dari yang paling baru.</p>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="years">2023 — Sekarang</div>
+          <h3>Nama Universitas / Institusi</h3>
+          <p>Nama jurusan atau program studi. Tambahkan pencapaian, organisasi, atau proyek penting di sini.</p>
+        </div>
+        <div class="timeline-item">
+          <div class="years">2020 — 2023</div>
+          <h3>Nama Sekolah Menengah</h3>
+          <p>Jurusan/peminatan, jika relevan. Sebutkan prestasi atau kegiatan yang ingin ditonjolkan.</p>
+        </div>
+        <div class="timeline-item">
+          <div class="years">2014 — 2020</div>
+          <h3>Nama Sekolah Dasar</h3>
+          <p>Tambahkan baris ini hanya jika relevan untuk ditampilkan, atau hapus.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="materi">
+      <h2 class="section-title">Materi &amp; Artikel</h2>
+      <p class="section-desc">Kumpulan tulisan, catatan belajar, dan materi yang saya bagikan.</p>
+      <div class="filter-row" id="filterRow">
+        <button class="chip active" data-filter="semua">Semua</button>
+        <button class="chip" data-filter="tutorial">Tutorial</button>
+        <button class="chip" data-filter="catatan">Catatan Belajar</button>
+        <button class="chip" data-filter="opini">Opini</button>
+      </div>
+      <p class="result-count" id="resultCount"></p>
+      <div class="post-grid" id="postGrid"></div>
+      <div class="empty-state" id="emptyState" style="display:none;">Belum ada materi yang cocok. Coba kata kunci atau kategori lain.</div>
+    </section>
+
+    <section id="galeri">
+      <h2 class="section-title">Galeri</h2>
+      <p class="section-desc">Dokumentasi foto dan video seputar hobi dan hasil desain saya.</p>
+      <div class="gallery-grid" id="galleryGrid"></div>
+    </section>
+
+    <section id="kontak">
+      <h2 class="section-title">Kontak</h2>
+      <p class="section-desc">Ada pertanyaan, ajakan kolaborasi, atau sekadar mau menyapa?</p>
+      <div class="contact-grid">
+        <div class="contact-info">
+          <p>Cara tercepat menghubungi saya lewat email:</p>
+          <p><a class="email" href="mailto:nama@email.com">nama@email.com</a></p>
+          <p>Atau lewat media sosial yang ada di sidebar.</p>
+        </div>
+        <form class="contact-form" onsubmit="event.preventDefault(); alert('Form ini masih contoh — hubungkan ke layanan seperti Formspree atau backend Anda sendiri agar benar-benar terkirim.');">
+          <input type="text" placeholder="Nama" required>
+          <input type="email" placeholder="Email" required>
+          <textarea placeholder="Pesan"></textarea>
+          <button type="submit" class="btn btn-primary" style="align-self:flex-start;">Kirim Pesan</button>
+        </form>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      <span>© <span id="year2"></span> Nama Anda. Semua hak cipta dilindungi.</span>
+      <span>Dibuat dengan HTML, CSS &amp; JavaScript.</span>
+    </footer>
+  </main>
+</div>
+
+<div class="lightbox hidden" id="lightbox">
+  <div class="lightbox-inner">
+    <h3 id="lightboxTitle" style="margin-top:0;"></h3>
+    <p id="lightboxDesc" style="color:#C9C2AF;"></p>
+    <button class="lightbox-close" id="lightboxClose">Tutup</button>
+  </div>
+</div>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+  document.getElementById('year2').textContent = new Date().getFullYear();
+
+  /* ---------- Mobile menu ---------- */
+  const sidebar = document.getElementById('sidebar');
+  const menuToggle = document.getElementById('menuToggle');
+  if(menuToggle){
+    menuToggle.addEventListener('click', () => sidebar.classList.toggle('open'));
+  }
+  document.querySelectorAll('#sideNav a').forEach(a=>{
+    a.addEventListener('click', ()=> sidebar.classList.remove('open'));
+  });
+
+  /* ---------- Active nav on scroll ---------- */
+  const navLinks = document.querySelectorAll('#sideNav a');
+  const sections = document.querySelectorAll('main section');
+  const observer = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        navLinks.forEach(l=>l.classList.remove('active'));
+        const link = document.querySelector('#sideNav a[data-section="'+entry.target.id+'"]');
+        if(link) link.classList.add('active');
+      }
+    });
+  }, {rootMargin:'-40% 0px -50% 0px'});
+  sections.forEach(s=>observer.observe(s));
+
+  /* ---------- DATA: Materi & Artikel ----------
+     Tambahkan objek baru ke array ini untuk menambah artikel baru.
+     tag harus salah satu dari: tutorial, catatan, opini
+     color dipakai untuk garis aksen di atas kartu (boleh dikosongkan)
+  */
+  const posts = [
+    {
+      title: "Judul Artikel Pertama Anda",
+      excerpt: "Tulis ringkasan 1-2 kalimat tentang isi artikel ini di sini.",
+      tag: "tutorial",
+      tagLabel: "Tutorial",
+      date: "1 Sep 2026",
+      color: "#E0993A"
+    },
+    {
+      title: "Catatan Belajar: Topik yang Sedang Dipelajari",
+      excerpt: "Rangkuman singkat dari apa yang baru saja Anda pelajari minggu ini.",
+      tag: "catatan",
+      tagLabel: "Catatan Belajar",
+      date: "28 Agu 2026",
+      color: "#6E8F72"
+    },
+    {
+      title: "Pendapat Saya Tentang Suatu Isu",
+      excerpt: "Opini singkat yang ingin Anda bagikan ke pembaca.",
+      tag: "opini",
+      tagLabel: "Opini",
+      date: "15 Agu 2026",
+      color: "#1B2A4A"
+    },
+    {
+      title: "Judul Materi Lainnya",
+      excerpt: "Deskripsi singkat materi ini, boleh diganti sesuai isi sebenarnya.",
+      tag: "tutorial",
+      tagLabel: "Tutorial",
+      date: "5 Agu 2026",
+      color: "#E0993A"
+    }
+  ];
+
+  const postGrid = document.getElementById('postGrid');
+  const resultCount = document.getElementById('resultCount');
+  const emptyState = document.getElementById('emptyState');
+  let activeFilter = 'semua';
+  let searchTerm = '';
+
+  function highlight(text, term){
+    if(!term) return text;
+    const re = new RegExp('('+term.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','ig');
+    return text.replace(re, '<mark>$1</mark>');
+  }
+
+  function renderPosts(){
+    postGrid.innerHTML = '';
+    const term = searchTerm.trim().toLowerCase();
+    const filtered = posts.filter(p=>{
+      const matchesFilter = activeFilter === 'semua' || p.tag === activeFilter;
+      const matchesSearch = !term || p.title.toLowerCase().includes(term) || p.excerpt.toLowerCase().includes(term);
+      return matchesFilter && matchesSearch;
+    });
+    resultCount.textContent = filtered.length + ' materi ditemukan';
+    emptyState.style.display = filtered.length ? 'none' : 'block';
+    filtered.forEach(p=>{
+      const card = document.createElement('div');
+      card.className = 'post-card';
+      card.style.setProperty('--tagcolor', p.color || '#6E8F72');
+      card.innerHTML =
+        '<span class="tag">' + p.tagLabel + '</span>' +
+        '<h3>' + highlight(p.title, term) + '</h3>' +
+        '<p>' + highlight(p.excerpt, term) + '</p>' +
+        '<div class="meta">' + p.date + '</div>';
+      postGrid.appendChild(card);
+    });
+  }
+
+  document.getElementById('filterRow').addEventListener('click', (e)=>{
+    const btn = e.target.closest('.chip');
+    if(!btn) return;
+    document.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));
+    btn.classList.add('active');
+    activeFilter = btn.dataset.filter;
+    renderPosts();
+  });
+
+  document.getElementById('searchInput').addEventListener('input', (e)=>{
+    searchTerm = e.target.value;
+    renderPosts();
+    if(searchTerm.trim()){
+      document.getElementById('materi').scrollIntoView({behavior:'smooth'});
+    }
+  });
+
+  renderPosts();
+
+  /* ---------- DATA: Galeri ----------
+     type: "foto" atau "video"
+     Tambahkan objek baru untuk menambah item galeri.
+  */
+  const galleryItems = [
+    { type:'foto', title:'Judul Foto 1', color:'linear-gradient(135deg,#E0993A,#6E8F72)' },
+    { type:'video', title:'Judul Video 1', color:'linear-gradient(135deg,#1B2A4A,#6E8F72)' },
+    { type:'foto', title:'Judul Foto 2', color:'linear-gradient(135deg,#6E8F72,#E0993A)' },
+    { type:'foto', title:'Judul Foto 3', color:'linear-gradient(135deg,#2C3E63,#E0993A)' },
+    { type:'video', title:'Judul Video 2', color:'linear-gradient(135deg,#E0993A,#1B2A4A)' },
+    { type:'foto', title:'Judul Foto 4', color:'linear-gradient(135deg,#6E8F72,#2C3E63)' }
+  ];
+
+  const galleryGrid = document.getElementById('galleryGrid');
+  const lightbox = document.getElementById('lightbox');
+  const lightboxTitle = document.getElementById('lightboxTitle');
+  const lightboxDesc = document.getElementById('lightboxDesc');
+
+  galleryItems.forEach(item=>{
+    const el = document.createElement('div');
+    el.className = 'gallery-item ' + (item.type === 'video' ? 'video' : '');
+    el.innerHTML = '<div class="thumb" style="background:' + item.color + '"></div><div class="caption">' + item.title + '</div>';
+    el.addEventListener('click', ()=>{
+      lightboxTitle.textContent = item.title;
+      lightboxDesc.textContent = item.type === 'video'
+        ? 'Ganti bagian ini dengan elemen <video> atau tautan YouTube/Vimeo Anda.'
+        : 'Ganti latar warna ini dengan tag <img> berisi foto asli Anda.';
+      lightbox.classList.remove('hidden');
+    });
+    galleryGrid.appendChild(el);
+  });
+
+  document.getElementById('lightboxClose').addEventListener('click', ()=> lightbox.classList.add('hidden'));
+  lightbox.addEventListener('click', (e)=>{ if(e.target === lightbox) lightbox.classList.add('hidden'); });
+</script>
+</body>
+</html>
