@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Adam Syah_Blog</title>
+<title>Adam Syah — Blog Pribadi</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -56,7 +56,9 @@
     display:flex;align-items:center;justify-content:center;
     font-family:'Fraunces',serif;font-size:32px;font-weight:600;color:var(--ink);
     border:3px solid rgba(255,255,255,0.15);
+    overflow:hidden;
   }
+  .avatar img{width:100%;height:100%;object-fit:cover;border-radius:50%;}
   .profile h1{font-size:22px;margin:6px 0 0;font-weight:600;color:#fff;}
   .profile p.role{margin:0;font-size:13.5px;color:#C9C2AF;}
 
@@ -225,7 +227,7 @@
 <body>
 
 <div class="mobile-topbar">
-  <span class="brand">Nama Anda</span>
+  <span class="brand">Adam Syah</span>
   <button id="menuToggle" aria-label="Buka menu">
     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
   </button>
@@ -234,46 +236,48 @@
 <div class="app">
   <aside class="sidebar" id="sidebar">
     <div class="profile">
-      <div class="avatar">NA</div>
-      <h1>Nama Anda</h1>
-      <p class="role">Peran / Profesi Anda</p>
+      <div class="avatar"><img src="foto-profil.jpg" alt="Adam Syah"></div>
+      <h1>ADAM SYAH</h1>
+      <p class="role">Mahasiswa</p>
     </div>
 
     <div>
       <div class="search-box">
-        <input type="text" id="searchInput" placeholder="Cari materi...">
+        <input type="text" id="searchInput" placeholder="Cari...">
         <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
       </div>
-      <p class="search-hint">Mencari di bagian Materi &amp; Artikel</p>
+      <p class="search-hint">Mencari di bagian Mata Kuliah</p>
     </div>
 
     <nav class="side-nav" id="sideNav">
       <a href="#beranda" data-section="beranda" class="active"><span class="dot"></span>Beranda</a>
       <a href="#tentang" data-section="tentang"><span class="dot"></span>Tentang Saya</a>
       <a href="#pendidikan" data-section="pendidikan"><span class="dot"></span>Riwayat Pendidikan</a>
-      <a href="#materi" data-section="materi"><span class="dot"></span>Materi &amp; Artikel</a>
+      <a href="#materi" data-section="materi"><span class="dot"></span>Mata Kuliah</a>
       <a href="#galeri" data-section="galeri"><span class="dot"></span>Galeri</a>
       <a href="#kontak" data-section="kontak"><span class="dot"></span>Kontak</a>
     </nav>
 
     <div class="sidebar-footer">
       <div class="social-row">
-        <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5" stroke-width="2"/><circle cx="12" cy="12" r="4" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1" fill="#EFE9DC"/></svg></a>
-        <a href="#" aria-label="GitHub"><svg viewBox="0 0 24 24"><path stroke-width="2" d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.6 2.8 5.5 3.1 5.5 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4.1 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></a>
-        <a href="#" aria-label="Email"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2" stroke-width="2"/><path stroke-width="2" d="m4 7 8 6 8-6"/></svg></a>
+        <a href="https://instagram.com/adam_syh" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5" stroke-width="2"/><circle cx="12" cy="12" r="4" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1" fill="#EFE9DC"/></svg></a>
+        <a href="https://wa.me/6285242648816" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M6 18.5 4.5 21l2.6-1.4A8 8 0 1 0 4 12a7.9 7.9 0 0 0 1 3.9L6 18.5Z"/><path d="M9 9.5c0 3 2.5 5.5 5.5 5.5.7 0 1-.6.8-1.2l-.4-1.1c-.1-.4-.6-.6-1-.4l-.8.4a4.6 4.6 0 0 1-2.8-2.8l.4-.8c.2-.4 0-.9-.4-1l-1.1-.4C8.6 7.5 9 7.8 9 9.5Z" fill="#EFE9DC" stroke="none"/></svg></a>
+        <a href="#" aria-label="Facebook" title="Ganti dengan link profil Facebook Anda"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><path d="M14 8.5h-1.5c-.8 0-1.5.7-1.5 1.5v2h3l-.4 3H11V21" /></svg></a>
+        <a href="https://tiktok.com/@orca_blue" target="_blank" rel="noopener" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M14 4v9.5a3 3 0 1 1-2.5-3V7.5"/><path d="M14 4c.3 2 1.8 3.5 3.8 3.8"/></svg></a>
       </div>
-      <p class="sidebar-note">© <span id="year"></span> Nama Anda</p>
+      <p class="sidebar-note">© <span id="year"></span> Adam Syah</p>
     </div>
   </aside>
 
   <main>
     <section id="beranda" class="hero">
-      <h1 class="eyebrow-free-heading">Catatan dan karya, dikumpulkan di satu tempat</h1>
-      <p class="lede">Ini adalah ruang pribadi saya untuk mendokumentasikan proses belajar, membagikan materi, dan menyimpan hasil desain maupun hobi — supaya semuanya bisa dilihat kembali, dan mungkin berguna untuk orang lain juga.</p>
+      <h1 class="eyebrow-free-heading">Halo, Selamat Datang Di Blog Saya</h1>
+      <p class="lede">Ini adalah ruang pribadi saya sebagai mahasiswa untuk mendokumentasikan materi dan tugas kuliah, berbagi hasil desain, serta menyimpan momen seputar hobi dan keseharian saya.</p>
       <div class="tag-row">
         <span class="pill">Belajar &amp; berbagi</span>
         <span class="pill">Desain &amp; hobi</span>
         <span class="pill">Dokumentasi pribadi</span>
+        <span class="pill">Perkuliahan</span>
       </div>
       <div class="cta-row">
         <a href="#materi" class="btn btn-primary">Lihat Materi</a>
@@ -286,14 +290,14 @@
       <p class="section-desc">Sedikit cerita tentang siapa saya dan apa yang sedang saya kerjakan.</p>
       <div class="about-grid">
         <div>
-          <p>Halo, saya <strong>Nama Anda</strong>. Ganti paragraf ini dengan cerita singkat tentang diri Anda — dari mana Anda berasal, apa yang sedang dipelajari atau dikerjakan sekarang, dan apa yang membuat Anda tertarik membuat blog ini.</p>
-          <p>Tulis juga hal-hal yang membuat Anda berbeda: pendekatan kerja, minat di luar bidang utama, atau nilai yang Anda pegang. Dua sampai tiga paragraf singkat biasanya sudah cukup — jangan terlalu panjang.</p>
+          <p>Halo, saya <strong>Adam Syah</strong>.</p>
         </div>
         <ul class="fact-list">
-          <li><span class="k">Domisili</span><span class="v">Kota Anda, Indonesia</span></li>
-          <li><span class="k">Fokus saat ini</span><span class="v">Isi dengan bidang/topik yang sedang ditekuni</span></li>
-          <li><span class="k">Hobi</span><span class="v">Isi dengan hobi Anda, mis. fotografi, desain</span></li>
-          <li><span class="k">Bahasa</span><span class="v">Indonesia, Inggris</span></li>
+          <li><span class="k">Asal</span><span class="v">Bone, Sulawesi Selatan</span></li>
+          <li><span class="k">Domisili Saat Ini</span><span class="v">Makassar, Sulawesi Selatan</span></li>
+          <li><span class="k">Fokus Saat Ini</span><span class="v">Kuliah</span></li>
+          <li><span class="k">Hobi</span><span class="v">Desain, Mengendarai Motor, Berenang</span></li>
+          <li><span class="k">Cita-cita</span><span class="v">Pengusaha Sukses Dunia/Akhirat</span></li>
         </ul>
       </div>
     </section>
@@ -303,35 +307,44 @@
       <p class="section-desc">Perjalanan pendidikan saya dari yang paling baru.</p>
       <div class="timeline">
         <div class="timeline-item">
-          <div class="years">2023 — Sekarang</div>
-          <h3>Nama Universitas / Institusi</h3>
-          <p>Nama jurusan atau program studi. Tambahkan pencapaian, organisasi, atau proyek penting di sini.</p>
+          <div class="years">2025 — Sekarang</div>
+          <h3>Universitas Negeri Makassar</h3>
+          <p>S1 Bisnis Digital.</p>
         </div>
         <div class="timeline-item">
-          <div class="years">2020 — 2023</div>
-          <h3>Nama Sekolah Menengah</h3>
-          <p>Jurusan/peminatan, jika relevan. Sebutkan prestasi atau kegiatan yang ingin ditonjolkan.</p>
+          <div class="years">2022 — 2025</div>
+          <h3>SMK Negeri 2 Bone</h3>
+          <p>Sekolah Menengah Kejuruan.</p>
         </div>
         <div class="timeline-item">
-          <div class="years">2014 — 2020</div>
-          <h3>Nama Sekolah Dasar</h3>
-          <p>Tambahkan baris ini hanya jika relevan untuk ditampilkan, atau hapus.</p>
+          <div class="years">2019 — 2022</div>
+          <h3>SMP Ibnu Qayyim Mallojena &amp; MTs Baburrahman Waetuo</h3>
+          <p>Jenjang sekolah menengah pertama.</p>
+        </div>
+        <div class="timeline-item">
+          <div class="years">2013 — 2019</div>
+          <h3>SD Inpres 10/73 Waetuo</h3>
+          <p>Jenjang sekolah dasar.</p>
+        </div>
+        <div class="timeline-item">
+          <div class="years">2012 — 2013</div>
+          <h3>TK Adhyaksa</h3>
+          <p>Jenjang taman kanak-kanak.</p>
         </div>
       </div>
     </section>
 
     <section id="materi">
-      <h2 class="section-title">Materi &amp; Artikel</h2>
-      <p class="section-desc">Kumpulan tulisan, catatan belajar, dan materi yang saya bagikan.</p>
+      <h2 class="section-title">Mata Kuliah</h2>
+      <p class="section-desc">Materi dan tugas kuliah saya, dikelompokkan per mata kuliah.</p>
       <div class="filter-row" id="filterRow">
         <button class="chip active" data-filter="semua">Semua</button>
-        <button class="chip" data-filter="tutorial">Tutorial</button>
-        <button class="chip" data-filter="catatan">Catatan Belajar</button>
-        <button class="chip" data-filter="opini">Opini</button>
+        <button class="chip" data-filter="Digital Marketing">Digital Marketing</button>
+        <!-- Tambahkan tombol <button class="chip" data-filter="Nama Mata Kuliah">Nama Mata Kuliah</button> di sini untuk tiap mata kuliah baru -->
       </div>
       <p class="result-count" id="resultCount"></p>
       <div class="post-grid" id="postGrid"></div>
-      <div class="empty-state" id="emptyState" style="display:none;">Belum ada materi yang cocok. Coba kata kunci atau kategori lain.</div>
+      <div class="empty-state" id="emptyState" style="display:none;">Belum ada materi yang cocok. Coba kata kunci atau mata kuliah lain.</div>
     </section>
 
     <section id="galeri">
@@ -346,7 +359,7 @@
       <div class="contact-grid">
         <div class="contact-info">
           <p>Cara tercepat menghubungi saya lewat email:</p>
-          <p><a class="email" href="mailto:nama@email.com">nama@email.com</a></p>
+          <p><a class="email" href="mailto:adamsyahbone123@gmail.com">adamsyahbone123@gmail.com</a></p>
           <p>Atau lewat media sosial yang ada di sidebar.</p>
         </div>
         <form class="contact-form" onsubmit="event.preventDefault(); alert('Form ini masih contoh — hubungkan ke layanan seperti Formspree atau backend Anda sendiri agar benar-benar terkirim.');">
@@ -359,7 +372,7 @@
     </section>
 
     <footer class="site-footer">
-      <span>© <span id="year2"></span> Nama Anda. Semua hak cipta dilindungi.</span>
+      <span>© <span id="year2"></span> Adam Syah. Semua hak cipta dilindungi.</span>
       <span>Dibuat dengan HTML, CSS &amp; JavaScript.</span>
     </footer>
   </main>
@@ -401,45 +414,34 @@
   }, {rootMargin:'-40% 0px -50% 0px'});
   sections.forEach(s=>observer.observe(s));
 
-  /* ---------- DATA: Materi & Artikel ----------
-     Tambahkan objek baru ke array ini untuk menambah artikel baru.
-     tag harus salah satu dari: tutorial, catatan, opini
-     color dipakai untuk garis aksen di atas kartu (boleh dikosongkan)
+  /* ---------- DATA: Mata Kuliah (Materi & Tugas) ----------
+     Tambahkan objek baru ke array ini untuk menambah materi/tugas baru.
+     course : nama mata kuliah persis sama dengan data-filter di tombol chip di atas
+              (kalau menambah mata kuliah baru, tambahkan juga tombol chip-nya)
+     type   : "materi" atau "tugas" (menentukan label dan warna kartu)
+     color diisi otomatis lewat baris di bawah array ini, tidak perlu diubah manual.
   */
   const posts = [
     {
-      title: "Judul Artikel Pertama Anda",
-      excerpt: "Tulis ringkasan 1-2 kalimat tentang isi artikel ini di sini.",
-      tag: "tutorial",
-      tagLabel: "Tutorial",
-      date: "1 Sep 2026",
-      color: "#E0993A"
+      title: "Materi 1: Pengenalan Digital Marketing",
+      excerpt: "Ganti dengan ringkasan materi pertama Anda di mata kuliah ini.",
+      course: "Digital Marketing",
+      type: "materi",
+      date: "1 Sep 2026"
     },
     {
-      title: "Catatan Belajar: Topik yang Sedang Dipelajari",
-      excerpt: "Rangkuman singkat dari apa yang baru saja Anda pelajari minggu ini.",
-      tag: "catatan",
-      tagLabel: "Catatan Belajar",
-      date: "28 Agu 2026",
-      color: "#6E8F72"
-    },
-    {
-      title: "Pendapat Saya Tentang Suatu Isu",
-      excerpt: "Opini singkat yang ingin Anda bagikan ke pembaca.",
-      tag: "opini",
-      tagLabel: "Opini",
-      date: "15 Agu 2026",
-      color: "#1B2A4A"
-    },
-    {
-      title: "Judul Materi Lainnya",
-      excerpt: "Deskripsi singkat materi ini, boleh diganti sesuai isi sebenarnya.",
-      tag: "tutorial",
-      tagLabel: "Tutorial",
-      date: "5 Agu 2026",
-      color: "#E0993A"
+      title: "Tugas 1: Analisis Studi Kasus",
+      excerpt: "Ganti dengan deskripsi singkat tugas ini, termasuk tenggat waktu jika perlu.",
+      course: "Digital Marketing",
+      type: "tugas",
+      date: "5 Sep 2026"
     }
   ];
+  const typeMeta = {
+    materi: { label: "Materi", color: "#6E8F72" },
+    tugas:  { label: "Tugas",  color: "#E0993A" }
+  };
+  posts.forEach(p=>{ p.tagLabel = typeMeta[p.type].label + " · " + p.course; p.color = typeMeta[p.type].color; });
 
   const postGrid = document.getElementById('postGrid');
   const resultCount = document.getElementById('resultCount');
@@ -457,7 +459,7 @@
     postGrid.innerHTML = '';
     const term = searchTerm.trim().toLowerCase();
     const filtered = posts.filter(p=>{
-      const matchesFilter = activeFilter === 'semua' || p.tag === activeFilter;
+      const matchesFilter = activeFilter === 'semua' || p.course === activeFilter;
       const matchesSearch = !term || p.title.toLowerCase().includes(term) || p.excerpt.toLowerCase().includes(term);
       return matchesFilter && matchesSearch;
     });
